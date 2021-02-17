@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30907.101
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Epam.Task1.2.1.AVERAGES", "Epam.Task1.2.1.AVERAGES\Epam.Task1.2.1.AVERAGES.csproj", "{0EC6382F-DD62-4C00-B88C-487EC157476F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Epam.Task1.2.2.DOUBLER", "Epam.Task1.2.2.DOUBLER\Epam.Task1.2.2.DOUBLER.csproj", "{255A6F1D-98FA-493C-9AC2-A6B67FB84A79}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{0EC6382F-DD62-4C00-B88C-487EC157476F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0EC6382F-DD62-4C00-B88C-487EC157476F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0EC6382F-DD62-4C00-B88C-487EC157476F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0EC6382F-DD62-4C00-B88C-487EC157476F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{255A6F1D-98FA-493C-9AC2-A6B67FB84A79}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{255A6F1D-98FA-493C-9AC2-A6B67FB84A79}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{255A6F1D-98FA-493C-9AC2-A6B67FB84A79}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{255A6F1D-98FA-493C-9AC2-A6B67FB84A79}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {119ED64B-9644-4C5A-84DA-EB4121041314}
+	EndGlobalSection
+EndGlobal
