@@ -1,8 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 
 namespace Epam.Task1._2._4.VALIDATOR
 {
@@ -15,15 +12,25 @@ namespace Epam.Task1._2._4.VALIDATOR
 
             string[] masStr = str.Split(new char[] { '.', '?', '!' }, StringSplitOptions.RemoveEmptyEntries);
             StringBuilder builder = new StringBuilder();
+            int index = 0;
             foreach (var item in masStr)
             {
-                if(char.IsLower(item[0]))
+                builder.Append(item);
+                for (int i = 0; i < item.Length; i++)
                 {
-                    builder[0]=char.ToUpper(item[0]);
+                    if(char.IsLetter(item[i]) && char.IsLower(item[i]))
+                    {
+                        builder[index+i] = char.ToUpper(item[i]);
+                        break;
+                    }
                 }
+
+                index += item.Length;
+                builder.Append(str[index]);
+                index++;
             }
-            string.Join(str, masStr);
-            Console.WriteLine($"ВЫВОД: {str}"); 
+
+            Console.WriteLine($"ВЫВОД: {builder}");
         }
     }
 }
