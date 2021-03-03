@@ -1,7 +1,9 @@
-﻿namespace Epam.Task_2._1._2.CUSTOM_PAINT
+﻿using System;
+namespace Epam.Task_2._1._2.CUSTOM_PAINT
 {
-    public abstract class Figure
+    interface Figure
     {
-        public abstract void Print();
+        void Print();
+        void Input();
     }
 }

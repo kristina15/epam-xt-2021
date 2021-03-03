@@ -2,24 +2,30 @@
 
 namespace Epam.Task_2._1._2.CUSTOM_PAINT
 {
-    internal class Circle : Figure
+    internal class Circle : RoundShape
     {
-        private int x;
-        private int y;
-        private int radius;
+        public Circle() : base() { }
 
         public Circle(int _x, int _y, int _radius)
         {
-            x = _x;
-            y = _y;
-            radius = _radius;
+            X = _x;
+            Y = _y;
+            Radius = _radius;
         }
 
-        public int Length => (int)(2 * Math.PI * radius);
+        public int Length => (int)(2 * Math.PI * Radius);
 
         public override void Print()
         {
-            Console.WriteLine($"Circle centered at a point ({x}, {y}), Radius = {radius} and Length = {Length}");
+            Console.Write("Circle");
+            base.Print();
+            Console.WriteLine($" and Length = {Length}");
+        }
+
+        public override void Input()
+        {
+            Console.WriteLine("ВЫВОД: Введите параметры фигуры Окружность");
+            base.Input();
         }
     }
 }

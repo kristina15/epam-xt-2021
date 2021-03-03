@@ -2,45 +2,81 @@
 
 namespace Epam.Task_2._1._2.CUSTOM_PAINT
 {
-    public class Ring : Figure
+    public class Ring : RoundShape
     {
-        private int x;
-        private int y;
-        private int externalRadius;
         private int internalRadius;
 
         public Ring()
         {
-            x = 0;
-            y = 0;
-            externalRadius = 0;
+            X = 0;
+            Y = 0;
+            Radius = 0;
             internalRadius = 0;
         }
 
         public Ring(int _x, int _y, int _externalRadius, int _internalRadius)
         {
-            if (internalRadius > externalRadius)
+            if (_internalRadius > _externalRadius)
             {
                 throw new ArgumentException();
             }
             else
             {
-                externalRadius = _externalRadius;
+                Radius = _externalRadius;
                 internalRadius = _internalRadius;
-                x = _x;
-                y = _y;
+                X = _x;
+                Y = _y;
             }
         }
 
-        public double Area => Math.PI * (Math.Pow(externalRadius, 2) - Math.Pow(internalRadius, 2));
+        public int InternalRadius
+        {
+            get => internalRadius;
+            set
+            {
+                if (value < 0)
+                {
+                    throw new ArgumentException("Radius cannot be negative");
+                }
 
-        public double LengthOfBigCircle => Math.PI * 2 * externalRadius;
+                if (value > Radius)
+                {
+                    throw new ArgumentException("internal radius cannot be more than external radius");
+                }
+
+                internalRadius = value;
+            }
+        }
+
+        public double Area => Math.PI * (Math.Pow(Radius, 2) - Math.Pow(internalRadius, 2));
+
+        public double LengthOfBigCircle => Math.PI * 2 * Radius;
 
         public double LengthOfSmallCircle => Math.PI * 2 * internalRadius;
 
         public override void Print()
         {
-            Console.WriteLine($"Ring centered at the point ({x}, {y}), with an external radius {externalRadius}, internal radius = {internalRadius}, Area ~ {(int)Area}, length of big circle ~ {(int)LengthOfBigCircle}, length of small sircle ~ {(int)LengthOfSmallCircle}");
+            Console.Write("Ring");
+            base.Print();
+            Console.WriteLine($", internal radius = {internalRadius}, Area ~ {(int)Area}, length of big circle ~ {(int)LengthOfBigCircle}, length of small sircle ~ {(int)LengthOfSmallCircle}");
+        }
+
+        public override void Input()
+        {
+            Console.WriteLine("ВЫВОД: Введите параметры фигуры Кольцо");
+            base.Input();
+            do
+            {
+                Console.Write("ВВОД: Internal radius = ");
+                try
+                {
+                    InternalRadius = int.Parse(Console.ReadLine());
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine(ex.Message);
+                }
+            } while (InternalRadius == 0);
         }
     }
 }
