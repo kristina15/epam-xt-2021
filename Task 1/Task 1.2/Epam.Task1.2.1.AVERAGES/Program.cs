@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Text;
 
 namespace Epam.Task1._2._1.AVERAGES
 {
@@ -7,7 +8,7 @@ namespace Epam.Task1._2._1.AVERAGES
         private static void Main()
         {
             Console.Write("ВВОД: ");
-            string str = Console.ReadLine();
+            string str = "Викентий хорошо отметил день рождения: покушал пиццу, посмотрел кино, пообщался со студентами в чате";
             int count;
             string[] array = GetArray(str, out count);
             
@@ -32,11 +33,15 @@ namespace Epam.Task1._2._1.AVERAGES
                     else
                     {
                         array[j] = str.Substring(k, i - k);
+                    }
+
+                    while (char.IsPunctuation(str[i]) || char.IsWhiteSpace(str[i]))
+                    {
                         i++;
+                        k = i;
                     }
 
                     j++;
-                    k = i;
                 }
             }
 
