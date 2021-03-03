@@ -5,6 +5,8 @@ VisualStudioVersion = 16.0.31019.35
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Epam.Task_2.1.1.CUSTOM STRING", "Epam.Task_2.1.1.CUSTOM STRING\Epam.Task_2.1.1.CUSTOM STRING.csproj", "{D9011B17-8EE3-453D-8E85-76B853C0BC1F}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Epam.Task_2.1.2.CUSTOM PAINT", "Epam.Task_2.1.2.CUSTOM PAINT\Epam.Task_2.1.2.CUSTOM PAINT.csproj", "{0D43E4F5-9600-4799-8E7A-D0CF5B5A336E}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{D9011B17-8EE3-453D-8E85-76B853C0BC1F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D9011B17-8EE3-453D-8E85-76B853C0BC1F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D9011B17-8EE3-453D-8E85-76B853C0BC1F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0D43E4F5-9600-4799-8E7A-D0CF5B5A336E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0D43E4F5-9600-4799-8E7A-D0CF5B5A336E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0D43E4F5-9600-4799-8E7A-D0CF5B5A336E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0D43E4F5-9600-4799-8E7A-D0CF5B5A336E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

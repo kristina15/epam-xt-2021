@@ -6,11 +6,41 @@ namespace Epam.Task1._2._1.AVERAGES
     {
         private static void Main()
         {
+            Console.Write("ВВОД: ");
             string str = Console.ReadLine();
-            string[] array = str.Split(new char[] { ' ', ',', '.', '?', '/', '-', ':', ';', '!' }, StringSplitOptions.RemoveEmptyEntries);
+            int count;
+            string[] array = GetArray(str, out count);
+            
             int sum = GetSumLength(array);
 
-            Console.WriteLine($"Average length={sum / array.Length}"); //возвращаю целое значение
+            Console.WriteLine($"Average length={sum / count}"); //возвращаю целое значение
+        }
+
+        private static string[] GetArray(string str, out int j)
+        {
+            string[] array = new string[(str.Length / 2) + 1];
+            int k = 0;
+            j = 0;
+            for (int i = 0; i < str.Length; i++)
+            {
+                if (char.IsPunctuation(str[i]) || char.IsWhiteSpace(str[i]) || i == str.Length - 1)
+                {
+                    if (i == str.Length - 1)
+                    {
+                        array[j] = str.Substring(k, i - k + 1);
+                    }
+                    else
+                    {
+                        array[j] = str.Substring(k, i - k);
+                        i++;
+                    }
+
+                    j++;
+                    k = i;
+                }
+            }
+
+            return array;
         }
 
         private static int GetSumLength(string[] array)
@@ -18,7 +48,10 @@ namespace Epam.Task1._2._1.AVERAGES
             int sum = 0;
             for (int i = 0; i < array.Length; i++)
             {
-                sum += array[i].Length;
+                if (!string.IsNullOrEmpty(array[i]))
+                {
+                    sum += array[i].Length;
+                }
             }
 
             return sum;
