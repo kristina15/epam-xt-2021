@@ -2,7 +2,7 @@
 
 namespace Epam.Task_2._1._2.CUSTOM_PAINT
 {
-    class Line:Figure
+    class Line:IFigure
     {
         private int x2;
         private int y2;

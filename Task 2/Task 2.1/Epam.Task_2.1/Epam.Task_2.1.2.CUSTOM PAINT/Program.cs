@@ -8,7 +8,7 @@ namespace Epam.Task_2._1._2.CUSTOM_PAINT
 {
     internal class Program
     {
-        public static List<Figure> figures=new List<Figure>();
+        public static List<IFigure> figures=new List<IFigure>();
 
         private static void Main()
         {

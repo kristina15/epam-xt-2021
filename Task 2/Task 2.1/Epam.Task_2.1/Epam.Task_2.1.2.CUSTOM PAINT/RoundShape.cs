@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Epam.Task_2._1._2.CUSTOM_PAINT
 {
-    public abstract class RoundShape : Figure
+    public abstract class RoundShape : IFigure
     {
         private int radius;
 

@@ -2,7 +2,7 @@
 
 namespace Epam.Task_2._1._2.CUSTOM_PAINT
 {
-    public class Rectangle : Figure
+    public class Rectangle : IFigure
     {
         private int a;
         private int b;

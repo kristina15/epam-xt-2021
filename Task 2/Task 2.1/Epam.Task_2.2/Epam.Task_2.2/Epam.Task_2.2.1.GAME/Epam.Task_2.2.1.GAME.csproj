@@ -4,10 +4,10 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{0D43E4F5-9600-4799-8E7A-D0CF5B5A336E}</ProjectGuid>
+    <ProjectGuid>{A2949EB6-31E4-4AC2-8390-8AA628EC56B9}</ProjectGuid>
     <OutputType>Exe</OutputType>
-    <RootNamespace>Epam.Task_2._1._2.CUSTOM_PAINT</RootNamespace>
-    <AssemblyName>Epam.Task_2.1.2.CUSTOM PAINT</AssemblyName>
+    <RootNamespace>Epam.Task_2._2._1.GAME</RootNamespace>
+    <AssemblyName>Epam.Task_2.2.1.GAME</AssemblyName>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
@@ -43,16 +43,19 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Circle.cs" />
-    <Compile Include="IFigure.cs" />
-    <Compile Include="Line.cs" />
+    <Compile Include="AppleBonus.cs" />
+    <Compile Include="BearMonster.cs" />
+    <Compile Include="Bush.cs" />
+    <Compile Include="CherryBonus.cs" />
+    <Compile Include="Hero.cs" />
+    <Compile Include="Interface1.cs" />
+    <Compile Include="Pole.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Rectangle.cs" />
-    <Compile Include="Ring.cs" />
-    <Compile Include="Round.cs" />
-    <Compile Include="RoundShape.cs" />
-    <Compile Include="Square.cs" />
+    <Compile Include="PunapppleBonus.cs" />
+    <Compile Include="Stone.cs" />
+    <Compile Include="Tree.cs" />
+    <Compile Include="WolfMonster.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
