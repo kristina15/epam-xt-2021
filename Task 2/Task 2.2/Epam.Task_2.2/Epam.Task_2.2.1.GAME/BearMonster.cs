@@ -6,35 +6,23 @@ using System.Threading.Tasks;
 
 namespace Epam.Task_2._2._1.GAME
 {
-    public class BearMonster : Interface1
+    public class BearMonster : Monsters
     {
-        private int x;
-        private int y;
-
-        public BearMonster(Pole p, int x, int y)
+        public BearMonster(int _x, int _y) : base(_x, _y)
         {
-            if (x > p.Width || y > p.Heigth)
-            {
-                throw new ArgumentException();
-            }
-            else
-            {
-                this.x = x;
-                this.y = y;
-            }
         }
 
-        public void Step(Pole p)
+        public override void Step()
         {
-            if (x < p.Width / 2 && y < p.Heigth / 2)
+            if (x < Width / 2 && y < Heigth / 2)
             {
                 y++;
             }
-            else if (x > p.Width / 2 && y > p.Heigth / 2)
+            else if (x > Width / 2 && y > Heigth / 2)
             {
                 y--;
             }
-            else if (x > p.Width / 2 && y == p.Heigth / 2)
+            else if (x > Width / 2 && y == Heigth / 2)
             {
                 x--;
             }
@@ -42,27 +30,6 @@ namespace Epam.Task_2._2._1.GAME
             {
                 x++;
             }
-        }
-
-        public bool DoSomething(Hero h, Pole p)
-        {
-            Step(p);
-            if (x == h.X && y == h.Y)
-            {
-                Console.WriteLine("Ooh.... You lost your life, but managed to defeat this wild bear!");
-                p.CountOfMonsters--;
-                h.Life--;
-                h.CheckLife();
-                if (p.CountOfBonus == 0 && p.CountOfMonsters == 0)
-                {
-                    Console.WriteLine("Congratulations you have won!");
-                    System.Environment.Exit(0);
-                }
-
-                return true;
-            }
-
-            return false;
         }
     }
 }

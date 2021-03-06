@@ -8,18 +8,14 @@ namespace Epam.Task_2._2._1.GAME
 {
     public class Pole
     {
-        private int countOfBonus = 3;
-        private int countOfMonsters = 2;
-        private int width;
-        private int heigth;
+        protected static int CountOfBonus = 3;
+        protected static int CountOfMonsters = 2;
+        private static int width;
+        private static int heigth;
 
-        public int Width
+        public static int Width
         {
-            get
-            {
-                return width;
-            }
-
+            get => width;
             set
             {
                 if (value <= 0)
@@ -33,13 +29,9 @@ namespace Epam.Task_2._2._1.GAME
             }
         }
 
-        public int Heigth
+        public static int Heigth
         {
-            get
-            {
-                return heigth;
-            }
-
+            get => heigth;
             set
             {
                 if (value <= 0)
@@ -52,9 +44,5 @@ namespace Epam.Task_2._2._1.GAME
                 }
             }
         }
-
-        public int CountOfMonsters { get => countOfMonsters; set => countOfMonsters = 2; }
-
-        public int CountOfBonus { get => countOfBonus; set => countOfBonus = 3; }
     }
 }

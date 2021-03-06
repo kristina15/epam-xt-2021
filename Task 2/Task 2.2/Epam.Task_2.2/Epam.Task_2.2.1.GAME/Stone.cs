@@ -6,31 +6,18 @@ using System.Threading.Tasks;
 
 namespace Epam.Task_2._2._1.GAME
 {
-    public class Stone : Interface1
+    public class Stone : Barrier
     {
-        private int x;
-        private int y;
-
-        public Stone(Pole p, int x, int y)
+        public Stone(int _x, int _y) : base(_x, _y)
         {
-            if (x > p.Width || y > p.Heigth)
-            {
-                throw new ArgumentException();
-            }
-            else
-            {
-                this.x = x;
-                this.y = y;
-            }
         }
 
-        public bool DoSomething(Hero h, Pole p)
+        public override bool Resist()
         {
-            if (x == h.X && y == h.Y)
+            if (x == XOfHero && y == YOfHero)
             {
                 Console.WriteLine("Oh you hit a rock and it threw you 1 coordinate to the right!");
-                h.X++;
-                h.Check(p);
+                XOfHero++;
                 return true;
             }
 

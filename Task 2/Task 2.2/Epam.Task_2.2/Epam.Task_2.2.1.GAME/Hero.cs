@@ -6,39 +6,59 @@ using System.Threading.Tasks;
 
 namespace Epam.Task_2._2._1.GAME
 {
-    public class Hero
+    public class Hero:Pole
     {
+        private static int x;
+        private static int y;
+        public static int life;
         public Hero()
         {
-            X = 1;
-            Y = 1;
+            XOfHero = 1;
+            YOfHero = 1;
             Life = 2;
         }
 
-        public int X { get; set; }
-
-        public int Y { get; set; }
-
-        public int Life { get; set; }
-
-        public void CheckLife()
+        public int XOfHero
         {
-            if (Life == 0)
+            get => x;
+            set
             {
-                Console.WriteLine("I'm sorry you lost!");
-                System.Environment.Exit(0);
+                if (x > Width || x < 0)
+                {
+                    Console.WriteLine("I'm sorry you lost!");
+                    System.Environment.Exit(0);
+                }
+
+                x = value;
             }
         }
 
-        public void Check(Pole p)
-        {
-            if (X <= 0 || Y <= 0 || X > p.Width || Y > p.Heigth)
+        public int YOfHero{
+            get => y;
+            set
             {
-                Console.WriteLine("I'm sorry you lost 1 life and your new station (1, 1)");
-                Life--;
-                CheckLife();
-                X = 1;
-                Y = 1;
+                if (y > Heigth || y < 0)
+                {
+                    Console.WriteLine("I'm sorry you lost!");
+                    System.Environment.Exit(0);
+                }
+
+                y = value;
+            }
+        }
+
+        public int Life
+        {
+            get => life;
+            set
+            {
+                if (value <= 0)
+                {
+                    Console.WriteLine("I'm sorry you lost!");
+                    System.Environment.Exit(0);
+                }
+
+                life = value;
             }
         }
 
@@ -46,19 +66,19 @@ namespace Epam.Task_2._2._1.GAME
         {
             if (s == "Up")
             {
-                Y++;
+                YOfHero++;
             }
             else if (s == "Down")
             {
-                Y--;
+                YOfHero--;
             }
             else if (s == "Left")
             {
-                X--;
+                XOfHero--;
             }
             else if (s == "Rigth")
             {
-                X++;
+                XOfHero++;
             }
             else
             {

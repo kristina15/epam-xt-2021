@@ -1,28 +1,25 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Epam.Task_2._2._1.GAME
 {
-    public class PunapppleBonus : Bonuses
+    public abstract class Monsters:ObjectsOnField
     {
-        public PunapppleBonus(int _x, int _y) : base(_x, _y)
+        public Monsters(int _x, int _y):base(_x, _y)
         {
         }
 
-        public override bool GetBonus()
+        public bool Attack()
         {
+            Step();
             if (x == XOfHero && y == YOfHero)
             {
-                Console.WriteLine("Congratulations you have collected a bonus and one monster was killed as a gift!");
-                CountOfBonus--;
+                Console.WriteLine("Ooh.... You lost your life, but managed to defeat this wild bear!");
                 CountOfMonsters--;
+                Life--;
                 if (CountOfBonus == 0 && CountOfMonsters == 0)
                 {
                     Console.WriteLine("Congratulations you have won!");
-                    Environment.Exit(0);
+                    System.Environment.Exit(0);
                 }
 
                 return true;
@@ -30,5 +27,7 @@ namespace Epam.Task_2._2._1.GAME
 
             return false;
         }
+
+        public abstract void Step();
     }
 }

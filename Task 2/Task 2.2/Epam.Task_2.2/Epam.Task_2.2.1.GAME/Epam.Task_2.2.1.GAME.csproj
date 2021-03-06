@@ -44,11 +44,14 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AppleBonus.cs" />
+    <Compile Include="Barrier.cs" />
     <Compile Include="BearMonster.cs" />
+    <Compile Include="Bonuses.cs" />
     <Compile Include="Bush.cs" />
     <Compile Include="CherryBonus.cs" />
     <Compile Include="Hero.cs" />
-    <Compile Include="Interface1.cs" />
+    <Compile Include="Monsters.cs" />
+    <Compile Include="ObjectsOnField.cs" />
     <Compile Include="Pole.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
