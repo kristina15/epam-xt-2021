@@ -10,8 +10,8 @@ namespace Epam.Task_2._2._1.GAME
     {
         protected static int CountOfBonus = 3;
         protected static int CountOfMonsters = 2;
-        private static int width;
-        private static int heigth;
+        private static int width=1;
+        private static int heigth=1;
 
         public static int Width
         {

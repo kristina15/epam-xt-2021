@@ -19,7 +19,7 @@ namespace Epam.Task_2._2._1.GAME
                 if (CountOfBonus == 0 && CountOfMonsters == 0)
                 {
                     Console.WriteLine("Congratulations you have won!");
-                    System.Environment.Exit(0);
+                    Environment.Exit(0);
                 }
 
                 return true;

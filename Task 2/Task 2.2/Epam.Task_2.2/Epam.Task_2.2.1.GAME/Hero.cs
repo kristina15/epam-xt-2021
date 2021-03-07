@@ -6,17 +6,11 @@ using System.Threading.Tasks;
 
 namespace Epam.Task_2._2._1.GAME
 {
-    public class Hero:Pole
+    public class Hero : Pole
     {
-        private static int x;
-        private static int y;
-        public static int life;
-        public Hero()
-        {
-            XOfHero = 1;
-            YOfHero = 1;
-            Life = 2;
-        }
+        private static int x = 1;
+        private static int y = 1;
+        public static int life = 1;
 
         public int XOfHero
         {
@@ -26,21 +20,22 @@ namespace Epam.Task_2._2._1.GAME
                 if (x > Width || x < 0)
                 {
                     Console.WriteLine("I'm sorry you lost!");
-                    System.Environment.Exit(0);
+                    Environment.Exit(0);
                 }
 
                 x = value;
             }
         }
 
-        public int YOfHero{
+        public int YOfHero
+        {
             get => y;
             set
             {
                 if (y > Heigth || y < 0)
                 {
                     Console.WriteLine("I'm sorry you lost!");
-                    System.Environment.Exit(0);
+                    Environment.Exit(0);
                 }
 
                 y = value;
@@ -55,7 +50,7 @@ namespace Epam.Task_2._2._1.GAME
                 if (value <= 0)
                 {
                     Console.WriteLine("I'm sorry you lost!");
-                    System.Environment.Exit(0);
+                    Environment.Exit(0);
                 }
 
                 life = value;
@@ -64,25 +59,22 @@ namespace Epam.Task_2._2._1.GAME
 
         public void Step(string s)
         {
-            if (s == "Up")
+            switch (s)
             {
-                YOfHero++;
-            }
-            else if (s == "Down")
-            {
-                YOfHero--;
-            }
-            else if (s == "Left")
-            {
-                XOfHero--;
-            }
-            else if (s == "Rigth")
-            {
-                XOfHero++;
-            }
-            else
-            {
-                throw new ArgumentException();
+                case "Up":
+                    YOfHero++;
+                    break;
+                case "Down":
+                    YOfHero--;
+                    break;
+                case "Left":
+                    XOfHero--;
+                    break;
+                case "Right":
+                    XOfHero++;
+                    break;
+                default:
+                    break;
             }
         }
     }
