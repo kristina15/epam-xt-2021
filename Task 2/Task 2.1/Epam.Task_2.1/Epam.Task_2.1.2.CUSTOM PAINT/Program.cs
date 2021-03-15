@@ -1,8 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Epam.Task_2._1._2.CUSTOM_PAINT
 {
@@ -41,7 +38,6 @@ namespace Epam.Task_2._1._2.CUSTOM_PAINT
                         {
                             user = new User(name);
                             users.Add(name, user);
-                            
                         }
                         break;
                     case 5:
@@ -78,7 +74,6 @@ namespace Epam.Task_2._1._2.CUSTOM_PAINT
                 default:
                     break;
             }
-
         }
     }
 }

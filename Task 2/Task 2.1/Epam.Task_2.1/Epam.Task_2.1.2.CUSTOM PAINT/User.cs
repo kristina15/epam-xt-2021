@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 
 namespace Epam.Task_2._1._2.CUSTOM_PAINT
 {
@@ -16,10 +12,12 @@ namespace Epam.Task_2._1._2.CUSTOM_PAINT
         {
 
         }
+
         public User(string _name)
         {
             Name = _name;
         }
+
         public void Output()
         {
             foreach (var item in figures)
