@@ -2,7 +2,7 @@
 
 namespace Epam.Task_2._1._2.CUSTOM_PAINT
 {
-    class Square:IFigure
+    public class Square:IFigure
     {
         private int a;
 

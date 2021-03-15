@@ -53,6 +53,7 @@
     <Compile Include="Round.cs" />
     <Compile Include="RoundShape.cs" />
     <Compile Include="Square.cs" />
+    <Compile Include="User.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

@@ -8,76 +8,77 @@ namespace Epam.Task_2._1._2.CUSTOM_PAINT
 {
     internal class Program
     {
-        public static List<IFigure> figures=new List<IFigure>();
-
+        public static Dictionary<string, User> users = new Dictionary<string, User>();
         private static void Main()
         {
+            Console.Write("Введите имя пользвателя: ");
+            string name = Console.ReadLine();
+            User user = new User(name);
+            users.Add(name, user);
+
             int k = 0;
             do
             {
-                Console.Write("ВЫВОД: Выберите действие\n1. Добавить фигуру\n2. Вывести фигуры\n3. Очистить холст\n4. Выход\nВВОД: ");
+                Console.Write("ВЫВОД: Выберите действие\n1. Добавить фигуру\n2. Вывести фигуры\n3. Очистить холст\n4. Сменить пользователя\n5. Выход\nВВОД: ");
                 k = int.Parse(Console.ReadLine());
                 switch (k)
                 {
                     case 1:
                         Console.WriteLine("Выберите тип фигуры\n\t1. Линия\n\t2. Круг\n\t3. Прямоугольник\n\t4. Квадрат\n\t5. Кольцо\n\t6. Окружность");
-                        ChooseFigure();
+                        ChooseFigure(user);
                         break;
                     case 2:
-                        OutputAllFigures();
+                        user.Output();
                         break;
                     case 3:
-                        figures.Clear();
+                        user.ClearFigure();
                         break;
                     case 4:
+                        Console.Write("Введите имя пользвателя: ");
+                        name = Console.ReadLine();
+                        bool flag = users.TryGetValue(name, out user);
+                        if (!flag)
+                        {
+                            user = new User(name);
+                            users.Add(name, user);
+                            
+                        }
+                        break;
+                    case 5:
                         break;
                     default:
                         break;
                 }
-            } while (k != 0 && k != 4);
+            } while (k != 0 && k != 5);
         }
 
-        private static void ChooseFigure()
+        private static void ChooseFigure(User user)
         {
-            int number=int.Parse(Console.ReadLine());
+            int number = int.Parse(Console.ReadLine());
             switch (number)
             {
                 case 1:
-                    figures.Add(new Line());
-                    figures[figures.Count - 1].Input();
+                    user.AddFigure(new Line());
                     break;
                 case 2:
-                    figures.Add(new Circle());
-                    figures[figures.Count - 1].Input();
+                    user.AddFigure(new Circle());
                     break;
                 case 3:
-                    figures.Add(new Rectangle());
-                    figures[figures.Count - 1].Input();
+                    user.AddFigure(new Rectangle());
                     break;
                 case 4:
-                    figures.Add(new Square());
-                    figures[figures.Count - 1].Input();
+                    user.AddFigure(new Square());
                     break;
                 case 5:
-                    figures.Add(new Ring());
-                    figures[figures.Count - 1].Input();
+                    user.AddFigure(new Ring());
                     break;
                 case 6:
-                    figures.Add(new Round());
-                    figures[figures.Count - 1].Input();
+                    user.AddFigure(new Round());
                     break;
                 default:
                     break;
             }
 
-        }
-
-        public static void OutputAllFigures()
-        {
-            foreach (var item in figures)
-            {
-                item.Print();
-            }
         }
     }
 }
