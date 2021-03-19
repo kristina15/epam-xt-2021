@@ -6,10 +6,8 @@ using System.Threading.Tasks;
 
 namespace Epam.Task_2._2._1.GAME
 {
-    public class Pole
+    public class Field
     {
-        protected static int CountOfBonus = 3;
-        protected static int CountOfMonsters = 2;
         private static int width=1;
         private static int heigth=1;
 

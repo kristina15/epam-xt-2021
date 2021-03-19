@@ -1,26 +1,21 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Epam.Task_2._2._1.GAME
+﻿namespace Epam.Task_2._2._1.GAME
 {
     public class WolfMonster : Monsters
     {
         public WolfMonster(int _x, int _y) : base(_x, _y)
         {
+            Name = "Wolf";
         }
 
         public override void Step()
         {
-            if (y < Heigth)
+            if (Y < Field.Heigth)
             {
-                y++;
+                Y++;
             }
-            else if (y == Heigth)
+            else if (Y == Field.Heigth)
             {
-                y = 1;
+                Y = 0;
             }
         }
     }

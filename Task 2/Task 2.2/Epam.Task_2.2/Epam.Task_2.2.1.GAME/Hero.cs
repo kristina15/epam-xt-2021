@@ -1,46 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Epam.Task_2._2._1.GAME
 {
-    public class Hero : Pole
+    public class Hero:ObjectsOnField
     {
-        private static int x = 1;
-        private static int y = 1;
-        public static int life = 1;
-
-        public int XOfHero
-        {
-            get => x;
-            set
-            {
-                if (x > Width || x < 0)
-                {
-                    Console.WriteLine("I'm sorry you lost!");
-                    Environment.Exit(0);
-                }
-
-                x = value;
-            }
-        }
-
-        public int YOfHero
-        {
-            get => y;
-            set
-            {
-                if (y > Heigth || y < 0)
-                {
-                    Console.WriteLine("I'm sorry you lost!");
-                    Environment.Exit(0);
-                }
-
-                y = value;
-            }
-        }
+        private int life = 2;
 
         public int Life
         {
@@ -62,16 +26,16 @@ namespace Epam.Task_2._2._1.GAME
             switch (s)
             {
                 case "Up":
-                    YOfHero++;
+                    Y++;
                     break;
                 case "Down":
-                    YOfHero--;
+                    Y--;
                     break;
                 case "Left":
-                    XOfHero--;
+                    X--;
                     break;
                 case "Right":
-                    XOfHero++;
+                    X++;
                     break;
                 default:
                     break;

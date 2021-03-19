@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Epam.Task_2._2._1.GAME
 {
@@ -10,18 +6,13 @@ namespace Epam.Task_2._2._1.GAME
     {
         public Tree(int _x, int _y) : base(_x, _y)
         {
+            Name = "Tree";
         }
 
-        public override bool Resist()
+        public override void MovedHero(Hero hero)
         {
-            if (x == XOfHero && y == YOfHero)
-            {
-                Console.WriteLine("Oh you hit a tree and it threw you 1 coordinate to the left!");
-                XOfHero--;
-                return true;
-            }
-
-            return false;
+            Console.WriteLine("Oh you hit a tree and it threw you 1 coordinate to the left!");
+            hero.Y--;
         }
     }
 }

@@ -2,23 +2,63 @@
 
 namespace Epam.Task_2._2._1.GAME
 {
-    public  abstract class ObjectsOnField:Hero
+    public abstract class ObjectsOnField
     {
-        protected int x;
-        protected int y;
+        private int x;
+        private int y;
+        private string name;
 
-        protected ObjectsOnField(int _x, int _y)
+        public string Name 
+        { 
+            get => name;
+            set => name = value;
+        }
+
+        public int X
         {
-            if (_x > Width || _y > Heigth)
+            get => x;
+            set
             {
-                throw new ArgumentException();
-            }
-            else
-            {
-                x = _x;
-                y = _y;
+                if (value > Field.Width || value < 0)
+                {
+                    throw new ArgumentException("Invalid coordinate X");
+                }
+
+                x = value;
             }
         }
 
+        public int Y
+        {
+            get => y;
+            set
+            {
+                if (value > Field.Heigth || value < 0)
+                {
+                    throw new ArgumentException("Invalid coordinate Y");
+                }
+
+                y = value;
+            }
+        }
+
+        public ObjectsOnField(int _x, int _y)
+        {
+            X = _x;
+            Y = _y;
+        }
+
+        public ObjectsOnField()
+        {
+            X = 1;
+            Y = 1;
+        }
+
+        public bool CompareCoordinate(Hero hero)
+        {
+            if (X == hero.X && Y == hero.Y)
+                return true;
+            return false;
+        }
     }
 }

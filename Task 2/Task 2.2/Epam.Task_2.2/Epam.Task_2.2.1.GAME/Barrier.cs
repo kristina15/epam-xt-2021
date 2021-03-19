@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace Epam.Task_2._2._1.GAME
+﻿namespace Epam.Task_2._2._1.GAME
 {
     public abstract class Barrier : ObjectsOnField
     {
@@ -8,6 +6,15 @@ namespace Epam.Task_2._2._1.GAME
         {
         }
 
-        public abstract bool Resist();
+        public abstract void MovedHero(Hero hero);
+
+        public void Resist(Hero hero)
+        {
+            bool flag = base.CompareCoordinate(hero);
+            if (flag)
+            {
+                MovedHero(hero);
+            }
+        }
     }
 }

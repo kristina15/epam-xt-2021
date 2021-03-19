@@ -43,19 +43,17 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AppleBonus.cs" />
     <Compile Include="Barrier.cs" />
     <Compile Include="BearMonster.cs" />
-    <Compile Include="Bonuses.cs" />
+    <Compile Include="Bonuse.cs" />
     <Compile Include="Bush.cs" />
-    <Compile Include="CherryBonus.cs" />
+    <Compile Include="Game.cs" />
     <Compile Include="Hero.cs" />
     <Compile Include="Monsters.cs" />
     <Compile Include="ObjectsOnField.cs" />
     <Compile Include="Pole.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="PunapppleBonus.cs" />
     <Compile Include="Stone.cs" />
     <Compile Include="Tree.cs" />
     <Compile Include="WolfMonster.cs" />
