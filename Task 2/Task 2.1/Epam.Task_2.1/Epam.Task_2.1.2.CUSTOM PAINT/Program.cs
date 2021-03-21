@@ -12,12 +12,11 @@ namespace Epam.Task_2._1._2.CUSTOM_PAINT
             string name = Console.ReadLine();
             User user = new User(name);
             users.Add(name, user);
-
             int k = 0;
             do
             {
                 Console.Write("ВЫВОД: Выберите действие\n1. Добавить фигуру\n2. Вывести фигуры\n3. Очистить холст\n4. Сменить пользователя\n5. Выход\nВВОД: ");
-                k = int.Parse(Console.ReadLine());
+                int.TryParse(Console.ReadLine(), out k);
                 switch (k)
                 {
                     case 1:
@@ -43,14 +42,16 @@ namespace Epam.Task_2._1._2.CUSTOM_PAINT
                     case 5:
                         break;
                     default:
+                        Console.WriteLine("Uncorrect choice");
                         break;
                 }
-            } while (k != 0 && k != 5);
+            } while (k != 5);
         }
 
         private static void ChooseFigure(User user)
         {
-            int number = int.Parse(Console.ReadLine());
+            int number;
+            int.TryParse(Console.ReadLine(), out number);
             switch (number)
             {
                 case 1:

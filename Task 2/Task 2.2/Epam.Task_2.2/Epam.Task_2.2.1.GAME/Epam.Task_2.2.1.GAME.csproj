@@ -51,7 +51,7 @@
     <Compile Include="Hero.cs" />
     <Compile Include="Monsters.cs" />
     <Compile Include="ObjectsOnField.cs" />
-    <Compile Include="Pole.cs" />
+    <Compile Include="Field.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Stone.cs" />

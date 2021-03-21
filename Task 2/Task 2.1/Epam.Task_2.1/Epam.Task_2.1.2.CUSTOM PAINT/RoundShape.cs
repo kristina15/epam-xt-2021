@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Epam.Task_2._1._2.CUSTOM_PAINT
 {
@@ -38,10 +34,8 @@ namespace Epam.Task_2._1._2.CUSTOM_PAINT
         public virtual void Input()
         {
             Console.WriteLine("ВЫВОД: Введите координаты центра");
-            Console.Write("ВВОД: x = ");
-            X = int.Parse(Console.ReadLine());
-            Console.Write("ВВОД: y = ");
-            Y = int.Parse(Console.ReadLine());
+            X = InputCoordinate("X");
+            Y = InputCoordinate("Y");
             do
             {
                 try
@@ -54,6 +48,19 @@ namespace Epam.Task_2._1._2.CUSTOM_PAINT
                     Console.WriteLine(ex.Message);
                 }
             } while (Radius == 0);
+        }
+
+        private static int InputCoordinate(string _coordinateName)
+        {
+            int inputNumber;
+            bool flag;
+            do
+            {
+                Console.Write($"ВВОД: {_coordinateName} = ");
+                flag = int.TryParse(Console.ReadLine(), out inputNumber);
+            } while (!flag);
+
+            return inputNumber;
         }
 
         public virtual void Print() 

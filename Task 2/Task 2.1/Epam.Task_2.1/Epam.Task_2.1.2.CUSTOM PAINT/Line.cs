@@ -2,7 +2,7 @@
 
 namespace Epam.Task_2._1._2.CUSTOM_PAINT
 {
-    public class Line:IFigure
+    public class Line : IFigure
     {
         private int x2;
         private int y2;
@@ -27,9 +27,9 @@ namespace Epam.Task_2._1._2.CUSTOM_PAINT
 
         public int Y1 { get; set; }
 
-        public int X2 
-        { 
-            get => x2; 
+        public int X2
+        {
+            get => x2;
             set
             {
                 if (value < X1)
@@ -41,7 +41,7 @@ namespace Epam.Task_2._1._2.CUSTOM_PAINT
             }
         }
 
-        public int Y2 
+        public int Y2
         {
             get => y2;
             set
@@ -60,17 +60,16 @@ namespace Epam.Task_2._1._2.CUSTOM_PAINT
         public void Input()
         {
             Console.WriteLine("ВЫВОД: Введите параметры фигуры Линия");
-            Console.Write("ВВОД: X1 = ");
-            X1 = int.Parse(Console.ReadLine());
+
+            X1 = InputCoordinate("X1");
             X2 = X1;
-            Console.Write("ВВОД: Y1 = ");
-            Y1 = int.Parse(Console.ReadLine());
+            Y1 = InputCoordinate("Y1");
             Y2 = Y1;
             do
             {
                 try
                 {
-                    Console.Write("ВВОД: X2 = ");
+                    Console.Write($"ВВОД: X2 = ");
                     X2 = int.Parse(Console.ReadLine());
                 }
                 catch (Exception ex)
@@ -91,7 +90,20 @@ namespace Epam.Task_2._1._2.CUSTOM_PAINT
                     Console.WriteLine(ex.Message);
                 }
             } while (Y2 == Y1);
-            
+
+        }
+
+        private static int InputCoordinate(string _coordinateName)
+        {
+            int inputNumber;
+            bool flag;
+            do
+            {
+                Console.Write($"ВВОД: {_coordinateName} = ");
+                flag = int.TryParse(Console.ReadLine(), out inputNumber);
+            } while (!flag);
+
+            return inputNumber;
         }
 
         public void Print()

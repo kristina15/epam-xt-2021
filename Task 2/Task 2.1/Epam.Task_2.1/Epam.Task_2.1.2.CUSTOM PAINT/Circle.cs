@@ -13,7 +13,11 @@ namespace Epam.Task_2._1._2.CUSTOM_PAINT
             Radius = _radius;
         }
 
-        public int Length => (int)(2 * Math.PI * Radius);
+        public int Length
+        {
+            get => (int)(2 * Math.PI * Radius);
+
+        }
 
         public override void Print()
         {

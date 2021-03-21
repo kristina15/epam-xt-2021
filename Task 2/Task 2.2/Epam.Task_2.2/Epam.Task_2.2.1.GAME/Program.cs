@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace Epam.Task_2._2._1.GAME
+﻿namespace Epam.Task_2._2._1.GAME
 {
     class Program
     {

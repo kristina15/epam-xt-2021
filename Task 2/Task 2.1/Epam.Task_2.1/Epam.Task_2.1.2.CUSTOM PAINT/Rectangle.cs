@@ -18,8 +18,8 @@ namespace Epam.Task_2._1._2.CUSTOM_PAINT
             B = _b;
         }
 
-        public int A 
-        { 
+        public int A
+        {
             get => a;
             set
             {
@@ -57,7 +57,7 @@ namespace Epam.Task_2._1._2.CUSTOM_PAINT
             {
                 try
                 {
-                    Console.Write("ВВОД: A = ");
+                    Console.Write($"ВВОД: A = ");
                     A = int.Parse(Console.ReadLine());
                 }
                 catch (Exception ex)
@@ -70,7 +70,7 @@ namespace Epam.Task_2._1._2.CUSTOM_PAINT
             {
                 try
                 {
-                    Console.Write("ВВОД: B = ");
+                    Console.Write($"ВВОД: B = ");
                     B = int.Parse(Console.ReadLine());
                 }
                 catch (Exception ex)
