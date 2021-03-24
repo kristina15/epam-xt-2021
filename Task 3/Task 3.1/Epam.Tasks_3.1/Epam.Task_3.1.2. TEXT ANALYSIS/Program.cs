@@ -13,7 +13,7 @@ namespace Epam.Task_3._1._2.TEXT_ANALYSIS
             Dictionary<string, int> pairs = new Dictionary<string, int>(StringComparer.CurrentCultureIgnoreCase);
             string[] s = "I’m Greg. I’m nine. I hAVE got a nice red cat. It can jump and run. But I haven’t got a Greg dog, and I’m sad. This is Rob. He is three. He has got a little yellow fish! The fish is nice. It can swim. Rob is happy. This is Jillian. She has got four little kittens. Jillian is happy, too.".Split();
 
-            str.Split(new char[] { ' ', '.', ',' }, StringSplitOptions.RemoveEmptyEntries);
+            s=str.Split(new char[] { ' ', '.', ',' }, StringSplitOptions.RemoveEmptyEntries);
 
             foreach (string item in s)
             {

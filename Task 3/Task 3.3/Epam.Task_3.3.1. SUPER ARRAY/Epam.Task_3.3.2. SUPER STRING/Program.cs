@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace Epam.Task_3._2._1.DYNAMIC_ARRAY
+﻿namespace Epam.Task_3._3._2.SUPER_STRING
 {
     internal class Program
     {
