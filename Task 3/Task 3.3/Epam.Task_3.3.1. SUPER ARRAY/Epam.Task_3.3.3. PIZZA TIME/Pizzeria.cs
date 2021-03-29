@@ -13,29 +13,29 @@ namespace Epam.Task_3._3._3.PIZZA_TIME
 
         public void AdditionalThread(string nameOfPizza, string nameOfPerson)
         {
-            ThreadStart ths = () => { CookingPizza(nameOfPizza); };
+            ThreadStart ths = () => { CookingPizza(nameOfPizza, nameOfPerson); };
             Thread thread1 = new Thread(ths);
             thread1.Start();
-            OnMyEvent(nameOfPerson);
+            OnMyEvent();
         }
 
-        protected virtual void OnMyEvent(string name)
+        protected void OnMyEvent()
         {
-            MyEvent?.Invoke(this, new PizzaEventArgs(name));
+            MyEvent?.Invoke(this, new PizzaEventArgs());
         }
 
-        private void CookingPizza(string nameOfPizza)
+        private void CookingPizza(string nameOfPizza, string nameOfPerson)
         {
             switch(nameOfPizza)
             {
                 case "Margarita":
-                    Thread.Sleep(300);
+                    Thread.Sleep(3000);
                     break;
                 case "B-B-Q":
-                    Thread.Sleep(500);
+                    Thread.Sleep(5000);
                     break;
                 case "Sicilian":
-                    Thread.Sleep(500);
+                    Thread.Sleep(5500);
                     break;
                 case "Hawaiian":
                     Thread.Sleep(1000);
@@ -44,11 +44,13 @@ namespace Epam.Task_3._3._3.PIZZA_TIME
                     Thread.Sleep(350);
                     break;
                 case "Four cheeses":
-                    Thread.Sleep(1000);
+                    Thread.Sleep(10000);
                     break;
                 default:
                     break;
             }
+
+            Console.WriteLine($"{nameOfPerson} your pizza is ready");
         }
     }
 }
