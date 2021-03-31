@@ -1,32 +1,28 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading;
-using System.Threading.Tasks;
 
 namespace Epam.Task_3._3._3.PIZZA_TIME
 {
-    class Pizzeria
+    public class Pizzeria
     {
-        public event EventHandler<PizzaEventArgs> MyEvent;
+        public event EventHandler<PizzaEventArgs> PizzaEvent;
 
-        public void AdditionalThread(string nameOfPizza, string nameOfPerson)
+        public void AdditionalThread(object sender, PizzaEventArgs e)
         {
-            ThreadStart ths = () => { CookingPizza(nameOfPizza, nameOfPerson); };
+            ThreadStart ths = () => { CookingPizza(e.NameOfPerson, e.NameOfPizza); };
             Thread thread1 = new Thread(ths);
             thread1.Start();
-            OnMyEvent();
+            OnMyEvent(e.NameOfPerson, e.NameOfPizza);
         }
 
-        protected void OnMyEvent()
+        private void OnMyEvent(string nameOfPerson, string nameOfPizza)
         {
-            MyEvent?.Invoke(this, new PizzaEventArgs());
+            PizzaEvent?.Invoke(this, new PizzaEventArgs(nameOfPerson, nameOfPizza));
         }
 
-        private void CookingPizza(string nameOfPizza, string nameOfPerson)
+        private void CookingPizza(string nameOfPerson, string nameOfPizza)
         {
-            switch(nameOfPizza)
+            switch (nameOfPizza)
             {
                 case "Margarita":
                     Thread.Sleep(3000);
