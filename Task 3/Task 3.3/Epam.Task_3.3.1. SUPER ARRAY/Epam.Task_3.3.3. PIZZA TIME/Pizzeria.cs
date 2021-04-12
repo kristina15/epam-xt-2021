@@ -1,5 +1,7 @@
 ﻿using System;
+using System.Diagnostics;
 using System.Threading;
+using System.Threading.Tasks;
 
 namespace Epam.Task_3._3._3.PIZZA_TIME
 {
@@ -20,12 +22,17 @@ namespace Epam.Task_3._3._3.PIZZA_TIME
             PizzaEvent?.Invoke(this, new PizzaEventArgs(nameOfPerson, nameOfPizza));
         }
 
-        private void CookingPizza(string nameOfPerson, string nameOfPizza)
+        private async Task CookingPizza(string nameOfPerson, string nameOfPizza)
         {
+            Stopwatch stopwatch = Stopwatch.StartNew();
             switch (nameOfPizza)
             {
                 case "Margarita":
-                    Thread.Sleep(3000);
+                    //if (stopwatch.ElapsedMilliseconds <= 30000)
+                    //{
+                    //    break;
+                    //}
+                    await Task.Delay(3000);
                     break;
                 case "B-B-Q":
                     Thread.Sleep(5000);

@@ -10,24 +10,31 @@ namespace Epam.Task_3._1._1._WEAKEST_LINK
             var queue = new Queue<int>();
             Console.WriteLine("ВЫВОД: Введите N");
             int numberOfPeople = GetNumberOfPeople();
-            Console.WriteLine("ВЫВОД: Сгенерирован круг людей. Начинаем вычеркивать каждого второго.");
+
+            Console.WriteLine("ВЫВОД: Введите, какой по счету человек будет вычеркнут каждый раунд:");
+            int numToStrikeOut = GetNumberOfPeople();
+
+            Console.WriteLine($"ВЫВОД: Сгенерирован круг людей. Начинаем вычеркивать каждого {numToStrikeOut}.");
             for (int i = 0; i < numberOfPeople; i++)
             {
                 queue.Enqueue(i + 1);
             }
 
-            CrossOutEverySecond(queue);
+            CrossOutEveryN(queue, numToStrikeOut);
 
-            Console.WriteLine($"Остался человек с номером: {queue.Peek()}");
             Console.WriteLine("ВЫВОД: Игра окончена. Невозможно вычеркнуть больше людей.");
         }
 
-        private static void CrossOutEverySecond(Queue<int> queue)
+        private static void CrossOutEveryN(Queue<int> queue, int numToStrikeOut)
         {
             int round = 1;
-            while (queue.Count > 1)
+            while (queue.Count >= numToStrikeOut)
             {
-                queue.Enqueue(queue.Dequeue());
+                for (int i = 0; i < numToStrikeOut-1; i++)
+                {
+                    queue.Enqueue(queue.Dequeue());
+                    
+                }
                 queue.Dequeue();
                 Console.WriteLine($"ВЫВОД: Раунд {round}. Вычеркнут человек. Людей осталось: {queue.Count}");
                 round++;

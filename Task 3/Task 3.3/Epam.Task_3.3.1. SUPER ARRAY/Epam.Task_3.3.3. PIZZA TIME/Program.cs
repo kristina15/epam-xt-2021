@@ -15,8 +15,8 @@
             Kris.UserEvent += pizzeria.AdditionalThread;
 
             Anna.GetOrder("Margarita");
-            Gleb.GetOrder("Sicilian");
-            Kris.GetOrder("Calzone");
+            //Gleb.GetOrder("Sicilian");
+            //Kris.GetOrder("Calzone");
 
         }
 
