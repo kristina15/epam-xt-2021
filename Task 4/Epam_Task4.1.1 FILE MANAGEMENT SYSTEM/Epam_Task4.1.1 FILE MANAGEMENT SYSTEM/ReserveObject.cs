@@ -7,19 +7,15 @@ using System.Threading;
 
 namespace Epam_Task4._1._1_FILE_MANAGEMENT_SYSTEM
 {
-    public delegate void delShow(string Message);
-
     public delegate void delCheckDict();
 
-    class ReserveObject
+    internal class ReserveObject
     {
         public static readonly string _pathDict = Path.Combine(Directory.GetCurrentDirectory(), "MyTextFile");
 
         public static readonly string _pathSystem = Path.Combine(Directory.GetCurrentDirectory(), "MyTextFileCopy");
 
-        readonly Dictionary<string, DateTime> _pathsAndDates = new Dictionary<string, DateTime>();
-
-        public event delShow CurEvents;
+        readonly Dictionary<string, DateTime> dateTimeDictionary = new Dictionary<string, DateTime>();
 
         private readonly delCheckDict ChDict;
 
@@ -28,7 +24,11 @@ namespace Epam_Task4._1._1_FILE_MANAGEMENT_SYSTEM
             FileSystemWatcher watcher = new FileSystemWatcher
             {
                 Path = _pathDict,
-                NotifyFilter = NotifyFilters.LastWrite | NotifyFilters.LastAccess | NotifyFilters.FileName | NotifyFilters.DirectoryName | NotifyFilters.Size,
+                NotifyFilter = NotifyFilters.LastWrite |
+                                NotifyFilters.LastAccess |
+                                NotifyFilters.FileName |
+                                NotifyFilters.DirectoryName |
+                                NotifyFilters.Size,
                 EnableRaisingEvents = true,
                 IncludeSubdirectories = true,
                 Filter = "*.*"
@@ -44,9 +44,16 @@ namespace Epam_Task4._1._1_FILE_MANAGEMENT_SYSTEM
             watcher.EnableRaisingEvents = true;
         }
 
+        public static void RollBackChanges()
+        {
+            Directory.Delete(_pathDict, true);
+            Directory.CreateDirectory(_pathDict);
+            SearchingFiles(InputDate());
+        }
+
         private void OnRename(object sender, RenamedEventArgs e)
         {
-            CurEvents($"Переименование файла {e.OldName} в {e.Name}");
+            Console.WriteLine($"Переименование файла {e.OldName} в {e.Name}");
             if (e.Name.Contains(".txt"))
             {
                 using (var sw = new StreamWriter($"{_pathSystem}\\LogFile.txt", true, Encoding.Default))
@@ -58,7 +65,7 @@ namespace Epam_Task4._1._1_FILE_MANAGEMENT_SYSTEM
 
         private void OnDelete(object sender, FileSystemEventArgs e)
         {
-            CurEvents($"Удаление файла {e.Name}");
+            Console.WriteLine($"Удаление файла {e.Name}");
             using (var sw = new StreamWriter($"{_pathSystem}\\LogFile.txt", true, Encoding.Default))
             {
                 sw.WriteLine($"{DateTime.Now}|Delete|{e.FullPath}||");
@@ -67,20 +74,16 @@ namespace Epam_Task4._1._1_FILE_MANAGEMENT_SYSTEM
 
         private void OnChanged(Object sender, FileSystemEventArgs e)
         {
-            if (e.ChangeType != WatcherChangeTypes.Changed)
+            lock (dateTimeDictionary)
             {
-                return;
-            }
-
-            lock (_pathsAndDates)
-            {
-                if (_pathsAndDates.ContainsKey(e.FullPath))
+                if (dateTimeDictionary.ContainsKey(e.FullPath))
                 {
-                    _pathsAndDates.Remove(e.FullPath);
+                    dateTimeDictionary.Remove(e.FullPath);
+                    return;
                 }
                 else
                 {
-                    _pathsAndDates.Add(e.FullPath, DateTime.Now);
+                    dateTimeDictionary.Add(e.FullPath, DateTime.Now);
                 }
             }
 
@@ -91,21 +94,15 @@ namespace Epam_Task4._1._1_FILE_MANAGEMENT_SYSTEM
         {
             if (filePath.Contains(".txt"))
             {
-                CurEvents($"Изменение файла {filePath}");
-                try
+                Console.WriteLine($"Изменение файла {filePath}");
+                using (var sw = new StreamWriter($"{_pathSystem}\\LogFile.txt", true, Encoding.Default))
                 {
-                    using (var sw = new StreamWriter($"{_pathSystem}\\LogFile.txt", true, Encoding.Default))
-                    {
-                        sw.WriteLine($"{DateTime.Now}|Change|{filePath}|{CopyFile(filePath, _pathSystem)}|");
-                    }
-                }
-                catch
-                {
+                    sw.WriteLine($"{DateTime.Now}|Change|{filePath}|{CopyFile(filePath, _pathSystem)}|");
                 }
             }
         }
 
-        private static string CopyFile(string originalFileName, string newDirName)
+        private string CopyFile(string originalFileName, string newDirName)
         {
             string newFileName = $"{newDirName}\\{Path.GetFileName(originalFileName)}";
             int numOfCopy = 0;
@@ -116,19 +113,21 @@ namespace Epam_Task4._1._1_FILE_MANAGEMENT_SYSTEM
             }
 
             File.Copy(originalFileName, newFileName);
+
             return newFileName;
         }
+
 
         private void CheckDict()
         {
             while (true)
             {
-                foreach (KeyValuePair<string, DateTime> entry in _pathsAndDates)
+                foreach (KeyValuePair<string, DateTime> entry in dateTimeDictionary)
                 {
                     if ((DateTime.Now.Millisecond - entry.Value.Millisecond) > 2000)
                     {
                         MakeEvents(entry.Key);
-                        _pathsAndDates.Remove(entry.Key);
+                        dateTimeDictionary.Remove(entry.Key);
                     }
                 }
 
@@ -150,19 +149,12 @@ namespace Epam_Task4._1._1_FILE_MANAGEMENT_SYSTEM
             return rollBackDate;
         }
 
-        public static void RollBackChanges()
-        {
-            Directory.Delete(_pathDict, true);
-            Directory.CreateDirectory(_pathDict);
-            SearchingFiles(InputDate());
-        }
-
         private static void SearchingFiles(DateTime creat)
         {
             var allText = File.ReadAllText($"{_pathSystem}\\LogFile.txt", Encoding.Default).Split('\n');
             for (int i = 0; i < allText.Length; i++)
             {
-                if (string.IsNullOrEmpty(allText[i]))
+                if (!string.IsNullOrEmpty(allText[i]))
                 {
                     var fileInfo = allText[i].Split(new char[] { '|' });
                     bool flag = DateTime.TryParse(fileInfo[0], out DateTime fileDate);

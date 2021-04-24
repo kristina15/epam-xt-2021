@@ -3,13 +3,8 @@ using System.IO;
 
 namespace Epam_Task4._1._1_FILE_MANAGEMENT_SYSTEM
 {
-    class Propgram
+    internal class Propgram
     {
-        static void ShowStr(string st)
-        {
-            Console.WriteLine(st);
-        }
-
         private static void Main()
         {
             Directory.CreateDirectory(ReserveObject._pathDict);
@@ -20,7 +15,6 @@ namespace Epam_Task4._1._1_FILE_MANAGEMENT_SYSTEM
                 case "1":
                     Console.WriteLine("Observer mode enabled");
                     var reverser = new ReserveObject();
-                    reverser.CurEvents += ShowStr;
                     Console.WriteLine("Press 'q' to quit the sample.");
                     while (Console.Read() != 'q')
                     {
