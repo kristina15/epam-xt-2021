@@ -8,6 +8,7 @@ namespace Epam_Task4._1._1_FILE_MANAGEMENT_SYSTEM
         private static void Main()
         {
             Directory.CreateDirectory(ReserveObject._pathDict);
+            Directory.CreateDirectory(ReserveObject._pathSystem);
             Console.WriteLine("Select the program mode\r\n1.The observer mode\r\n2.Mode for undoing changes\r\nTo exit the program, click any button");
             string choice = Console.ReadLine();
             switch (choice)

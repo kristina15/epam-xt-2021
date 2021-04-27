@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Globalization;
 using System.IO;
@@ -15,7 +16,7 @@ namespace Epam_Task4._1._1_FILE_MANAGEMENT_SYSTEM
 
         public static readonly string _pathSystem = Path.Combine(Directory.GetCurrentDirectory(), "MyTextFileCopy");
 
-        readonly Dictionary<string, DateTime> dateTimeDictionary = new Dictionary<string, DateTime>();
+        private readonly ConcurrentDictionary<string, DateTime> dateTimeDictionary = new ConcurrentDictionary<string, DateTime>();
 
         private readonly delCheckDict ChDict;
 
@@ -56,10 +57,14 @@ namespace Epam_Task4._1._1_FILE_MANAGEMENT_SYSTEM
             Console.WriteLine($"Переименование файла {e.OldName} в {e.Name}");
             if (e.Name.Contains(".txt"))
             {
-                using (var sw = new StreamWriter($"{_pathSystem}\\LogFile.txt", true, Encoding.Default))
+                string newFileName;
+                using (StreamWriter sw = new StreamWriter($"{_pathSystem}\\LogFile.txt", true, Encoding.Default))
                 {
-                    sw.WriteLine($"{DateTime.Now}|Rename|{e.OldFullPath}|{CopyFile(e.FullPath, _pathSystem)}|");
+                    newFileName = GetNewFileName(e.FullPath, _pathSystem);
+                    sw.WriteLine($"{DateTime.Now}|Change|{e.FullPath}|{newFileName}|");
                 }
+
+                CopyFile(e.FullPath, newFileName);
             }
         }
 
@@ -74,17 +79,13 @@ namespace Epam_Task4._1._1_FILE_MANAGEMENT_SYSTEM
 
         private void OnChanged(Object sender, FileSystemEventArgs e)
         {
-            lock (dateTimeDictionary)
+            if (dateTimeDictionary.ContainsKey(e.FullPath))
             {
-                if (dateTimeDictionary.ContainsKey(e.FullPath))
-                {
-                    dateTimeDictionary.Remove(e.FullPath);
-                    return;
-                }
-                else
-                {
-                    dateTimeDictionary.Add(e.FullPath, DateTime.Now);
-                }
+                dateTimeDictionary.TryRemove(e.FullPath, out DateTime date);
+            }
+            else
+            {
+                dateTimeDictionary.TryAdd(e.FullPath, DateTime.Now);
             }
 
             MakeEvents(e.FullPath);
@@ -95,14 +96,37 @@ namespace Epam_Task4._1._1_FILE_MANAGEMENT_SYSTEM
             if (filePath.Contains(".txt"))
             {
                 Console.WriteLine($"Изменение файла {filePath}");
-                using (var sw = new StreamWriter($"{_pathSystem}\\LogFile.txt", true, Encoding.Default))
+                string newFileName;
+
+                using (StreamWriter sw = new StreamWriter($"{_pathSystem}\\LogFile.txt", true, Encoding.Default))
                 {
-                    sw.WriteLine($"{DateTime.Now}|Change|{filePath}|{CopyFile(filePath, _pathSystem)}|");
+                    newFileName = GetNewFileName(filePath, _pathSystem);
+                    sw.WriteLine($"{DateTime.Now}|Change|{filePath}|{newFileName}|");
+                }
+
+                lock (this)
+                {
+                    CopyFile(filePath, newFileName);
                 }
             }
         }
 
-        private string CopyFile(string originalFileName, string newDirName)
+        private void CopyFile(string originalFileName, string newFileName)
+        {
+            byte[] array;
+            using (FileStream fstream = File.OpenRead(originalFileName))
+            {
+                array = new byte[fstream.Length];
+                fstream.Read(array, 0, array.Length);
+            }
+
+            using (FileStream fstream = new FileStream(newFileName, FileMode.OpenOrCreate))
+            {
+                fstream.Write(array, 0, array.Length);
+            }
+        }
+
+        private static string GetNewFileName(string originalFileName, string newDirName)
         {
             string newFileName = $"{newDirName}\\{Path.GetFileName(originalFileName)}";
             int numOfCopy = 0;
@@ -112,11 +136,8 @@ namespace Epam_Task4._1._1_FILE_MANAGEMENT_SYSTEM
                 newFileName = $"{newDirName}\\{Path.GetFileNameWithoutExtension(originalFileName)}({numOfCopy}){Path.GetExtension(originalFileName)}";
             }
 
-            File.Copy(originalFileName, newFileName);
-
             return newFileName;
         }
-
 
         private void CheckDict()
         {
@@ -127,7 +148,7 @@ namespace Epam_Task4._1._1_FILE_MANAGEMENT_SYSTEM
                     if ((DateTime.Now.Millisecond - entry.Value.Millisecond) > 2000)
                     {
                         MakeEvents(entry.Key);
-                        dateTimeDictionary.Remove(entry.Key);
+                        dateTimeDictionary.TryRemove(entry.Key, out DateTime time);
                     }
                 }
 
