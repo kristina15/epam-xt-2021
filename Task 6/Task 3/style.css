@@ -1,0 +1,47 @@
+        body {
+            background-color: rgb(43, 42, 42);
+        }
+        
+        .d33 {
+            margin-top: 45px;
+            margin-right: 5%;
+            margin-left: 5%;
+            height: auto;
+            width: auto\9;
+            background: #a8cbdb;
+            position: relative;
+            border: 5px solid rgb(162, 247, 247);
+            bottom: 100%;
+            max-width: 100%;
+        }
+        
+        .d33:before {
+            content: "";
+            width: 0;
+            height: 0;
+            position: absolute;
+            bottom: 100%;
+            left: calc(50% - 34px);
+            border-left: 40px solid transparent;
+            border-bottom: 50px solid rgb(162, 247, 247);
+            border-right: 40px solid transparent;
+        }
+        
+        .d33:after {
+            content: "";
+            width: 0;
+            height: 0;
+            position: absolute;
+            bottom: 100%;
+            left: calc(50% - 24px);
+            border-left: 30px solid transparent;
+            border-bottom: 40px solid #a8cbdb;
+            border-right: 30px solid transparent;
+        }
+        
+        .d33 p {
+            color: white;
+            text-align: center;
+            font-size: 21px;
+            padding: 0.5%;
+        }
